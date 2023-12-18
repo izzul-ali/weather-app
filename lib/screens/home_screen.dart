@@ -23,12 +23,27 @@ class HomeScreen extends StatelessWidget {
                 BlocBuilder<CurrentWeatherBloc, CurrentWeatherState>(
                   builder: (context, state) {
                     if (state is CurrentWeatherLoading) {
-                      return const Expanded(child: CircularProgressIndicator());
+                      return const Expanded(
+                        child: Center(
+                          child: CircularProgressIndicator(
+                            color: Color(0xff973AA9),
+                          ),
+                        ),
+                      );
                     }
 
                     if (state is CurrentWeatherError) {
-                      return Center(
-                        child: Text(state.error),
+                      return Expanded(
+                        child: Center(
+                          child: Text(
+                            state.error,
+                            style: const TextStyle(
+                              fontSize: 18,
+                              fontWeight: FontWeight.w600,
+                              color: Colors.red,
+                            ),
+                          ),
+                        ),
                       );
                     }
 
@@ -78,7 +93,11 @@ class HomeScreen extends StatelessWidget {
                       );
                     }
 
-                    return const Text('Something went wrong');
+                    return const Expanded(
+                      child: Center(
+                        child: Text('Conditions are not met'),
+                      ),
+                    );
                   },
                 ),
                 const SizedBox(height: 50),
@@ -122,84 +141,85 @@ class HomeScreen extends StatelessWidget {
                             color: Colors.white,
                           ),
                         ),
-                        Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 20),
-                          child: BlocBuilder<WeatherForecastBloc,
-                              WeatherForecastState>(
-                            builder: (context, state) {
-                              if (state is WeatherForecastLoading) {
-                                return const Center(
-                                  child: CircularProgressIndicator(),
-                                );
-                              }
+                        Center(
+                          child: Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 20),
+                            child: BlocBuilder<WeatherForecastBloc,
+                                WeatherForecastState>(
+                              builder: (context, state) {
+                                if (state is WeatherForecastLoading) {
+                                  return const CircularProgressIndicator(
+                                    color: Color(0xff973AA9),
+                                  );
+                                }
 
-                              if (state is WeatherForecastError) {
-                                return Center(
-                                  child: Text(
+                                if (state is WeatherForecastError) {
+                                  return Text(
                                     state.error,
                                     style: const TextStyle(
                                       fontSize: 18,
                                       fontWeight: FontWeight.w600,
                                       color: Colors.red,
                                     ),
-                                  ),
-                                );
-                              }
+                                  );
+                                }
 
-                              if (state is WeatherForecastSuccess) {
-                                if ((state.weatherForecast.weatherList ?? [])
-                                    .isEmpty) {
-                                  return const Center(
-                                    child: Text(
+                                if (state is WeatherForecastSuccess) {
+                                  if ((state.weatherForecast.weatherList ?? [])
+                                      .isEmpty) {
+                                    return const Text(
                                       'Weather Forecast is Empty',
                                       style: TextStyle(
                                         fontSize: 18,
                                         fontWeight: FontWeight.w600,
                                       ),
-                                    ),
+                                    );
+                                  }
+
+                                  return Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceAround,
+                                    children: state.weatherForecast.weatherList!
+                                        .map(
+                                          (weather) => Column(
+                                            children: [
+                                              Text(
+                                                '${weather.main?.temp?.round()}°C',
+                                                style: const TextStyle(
+                                                    fontSize: 16),
+                                              ),
+                                              SizedBox(
+                                                width: 60,
+                                                height: 60,
+                                                child: Image.asset(
+                                                  getWeatherCondition(
+                                                      weather.weather?[0].id ??
+                                                          0),
+                                                ),
+                                              ),
+                                              Text(
+                                                DateFormat('HH:MM').format(
+                                                  DateTime.parse(
+                                                    weather.dtTxt ??
+                                                        DateTime.now()
+                                                            .toString(),
+                                                  ),
+                                                ),
+                                                style: const TextStyle(
+                                                    fontSize: 16),
+                                              ),
+                                            ],
+                                          ),
+                                        )
+                                        .toList(),
                                   );
                                 }
 
-                                return Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceAround,
-                                  children: state.weatherForecast.weatherList!
-                                      .map(
-                                        (weather) => Column(
-                                          children: [
-                                            Text(
-                                              '${weather.main?.temp?.round()}°C',
-                                              style:
-                                                  const TextStyle(fontSize: 16),
-                                            ),
-                                            SizedBox(
-                                              width: 60,
-                                              height: 60,
-                                              child: Image.asset(
-                                                getWeatherCondition(
-                                                    weather.weather?[0].id ??
-                                                        0),
-                                              ),
-                                            ),
-                                            Text(
-                                              DateFormat('HH:MM').format(
-                                                DateTime.parse(
-                                                  weather.dtTxt ??
-                                                      DateTime.now().toString(),
-                                                ),
-                                              ),
-                                              style:
-                                                  const TextStyle(fontSize: 16),
-                                            ),
-                                          ],
-                                        ),
-                                      )
-                                      .toList(),
+                                return const Center(
+                                  child: Text('Conditions are not met'),
                                 );
-                              }
-
-                              return const SizedBox.shrink();
-                            },
+                              },
+                            ),
                           ),
                         ),
                       ],
