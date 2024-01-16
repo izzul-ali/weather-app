@@ -27,12 +27,12 @@ class WeatherForecast {
 }
 
 class WeatherList {
-  int? dt;
+  num? dt;
   Main? main;
   List<Weather>? weather;
   Clouds? clouds;
   Wind? wind;
-  int? visibility;
+  num? visibility;
   num? pop;
   Rain? rain;
   Sys? sys;
@@ -98,13 +98,13 @@ class WeatherList {
 
 class Main {
   num? temp;
-  double? feelsLike;
+  num? feelsLike;
   num? tempMin;
   num? tempMax;
-  int? pressure;
-  int? seaLevel;
-  int? grndLevel;
-  int? humidity;
+  num? pressure;
+  num? seaLevel;
+  num? grndLevel;
+  num? humidity;
   num? tempKf;
 
   Main(
@@ -146,7 +146,7 @@ class Main {
 }
 
 class Weather {
-  int? id;
+  num? id;
   String? main;
   String? description;
   String? icon;
@@ -171,7 +171,7 @@ class Weather {
 }
 
 class Clouds {
-  int? all;
+  num? all;
 
   Clouds({this.all});
 
@@ -187,8 +187,8 @@ class Clouds {
 }
 
 class Wind {
-  double? speed;
-  int? deg;
+  num? speed;
+  num? deg;
   num? gust;
 
   Wind({this.speed, this.deg, this.gust});
@@ -209,7 +209,7 @@ class Wind {
 }
 
 class Rain {
-  double? d3h;
+  num? d3h;
 
   Rain({this.d3h});
 
@@ -241,14 +241,14 @@ class Sys {
 }
 
 class City {
-  int? id;
+  num? id;
   String? name;
   Coord? coord;
   String? country;
-  int? population;
-  int? timezone;
-  int? sunrise;
-  int? sunset;
+  num? population;
+  num? timezone;
+  num? sunrise;
+  num? sunset;
 
   City(
       {this.id,
@@ -288,8 +288,8 @@ class City {
 }
 
 class Coord {
-  double? lat;
-  double? lon;
+  num? lat;
+  num? lon;
 
   Coord({this.lat, this.lon});
 

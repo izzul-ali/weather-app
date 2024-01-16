@@ -1,4 +1,4 @@
-String getWeatherCondition(int weatherId) {
+String getWeatherCondition(num weatherId) {
   print('weather cond ${weatherId}');
 
   if (weatherId == 0) {

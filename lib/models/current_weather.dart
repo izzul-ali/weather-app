@@ -3,16 +3,16 @@ class CurrentWeather {
   List<Weather>? weather;
   String? base;
   Main? main;
-  int? visibility;
+  num? visibility;
   Wind? wind;
   Rain? rain;
   Clouds? clouds;
-  int? dt;
+  num? dt;
   Sys? sys;
-  int? timezone;
-  int? id;
+  num? timezone;
+  num? id;
   String? name;
-  int? cod;
+  num? cod;
 
   CurrentWeather(
       {this.coord,
@@ -87,8 +87,8 @@ class CurrentWeather {
 }
 
 class Coord {
-  double? lon;
-  double? lat;
+  num? lon;
+  num? lat;
 
   Coord({this.lon, this.lat});
 
@@ -106,7 +106,7 @@ class Coord {
 }
 
 class Weather {
-  int? id;
+  num? id;
   String? main;
   String? description;
   String? icon;
@@ -131,14 +131,14 @@ class Weather {
 }
 
 class Main {
-  double? temp;
-  double? feelsLike;
-  double? tempMin;
-  double? tempMax;
-  int? pressure;
-  int? humidity;
-  int? seaLevel;
-  int? grndLevel;
+  num? temp;
+  num? feelsLike;
+  num? tempMin;
+  num? tempMax;
+  num? pressure;
+  num? humidity;
+  num? seaLevel;
+  num? grndLevel;
 
   Main(
       {this.temp,
@@ -176,9 +176,9 @@ class Main {
 }
 
 class Wind {
-  double? speed;
-  int? deg;
-  double? gust;
+  num? speed;
+  num? deg;
+  num? gust;
 
   Wind({this.speed, this.deg, this.gust});
 
@@ -198,7 +198,7 @@ class Wind {
 }
 
 class Rain {
-  double? d1h;
+  num? d1h;
 
   Rain({this.d1h});
 
@@ -214,7 +214,7 @@ class Rain {
 }
 
 class Clouds {
-  int? all;
+  num? all;
 
   Clouds({this.all});
 
@@ -230,11 +230,11 @@ class Clouds {
 }
 
 class Sys {
-  int? type;
-  int? id;
+  num? type;
+  num? id;
   String? country;
-  int? sunrise;
-  int? sunset;
+  num? sunrise;
+  num? sunset;
 
   Sys({this.type, this.id, this.country, this.sunrise, this.sunset});
 
